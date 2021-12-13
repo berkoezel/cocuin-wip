@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Table of Crypto Currencies</title>
+</head>
+<body>
+<span th:if="${cryptos[0].get('name') == 'null'}">An error related to API occured. Please try again later.</span>
+<span th:unless="${cryptos[0].get('name') == 'null'}">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Symbol</th>
+            <th>Price(USD)</th>
+            <th>Marketcap(USD)</th>
+            <th>Change Ratio / 24H</th>
+            <th>Volume/24H (USD)</th>
+            <th>Supply</th>
+        </tr>
+
+        <tr th:each="crypto:${cryptos}">
+            <span th:if="${crypto.get('name') == 'null'}">Unable to show data of this currency.</span>
+
+            <td th:text="${crypto.get('name')}"></td>
+            <td th:text="${crypto.get('symbol')}"></td>
+            <td th:text="${crypto.get('price')}"></td>
+            <td th:text="${crypto.get('marketcap')}"></td>
+            <td th:text="${crypto.get('changeratio')}"></td>
+            <td th:text="${crypto.get('volume')}"></td>
+            <td th:text="${crypto.get('supply')}"></td>
+
+        </tr>
+    </table>
+    </span>
+</body>
+</html>
